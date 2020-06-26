@@ -28,6 +28,8 @@ func main() {
 	for i := 0; i < 10; i++ {
 		c.L.Lock()            // <3>
 		for len(queue) == 2 { // <4>
+			//Mirar la doc de wait de cond que es muy interesante
+			//al suspender hace unlock, cuando le dan signal hace lock!
 			c.Wait() // <5>
 		}
 		fmt.Println("Adding to queue")
